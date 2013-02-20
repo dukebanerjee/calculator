@@ -12,6 +12,11 @@ public class CalculatorEndToEndTest {
     }
 
     @Test
+    public void shouldShowZeroInitially() {
+        calculator.shows("0");
+    }
+
+    @Test
     public void shouldEnterDigitsIntoDisplay() {
         calculator.press("1");
         calculator.press("2");
