@@ -12,24 +12,42 @@ public class CalculatorEndToEndTest {
     }
 
     @Test
-    public void shouldShowZeroInitially() {
+    public void showsZeroInitially() {
         calculator.shows("0");
     }
 
     @Test
-    public void shouldEnterDigitsIntoDisplay() {
-        calculator.press("1");
-        calculator.press("2");
-        calculator.press("3");
-        calculator.press("0");
-        calculator.press(".");
-        calculator.press("4");
-        calculator.press("5");
-        calculator.press("6");
-        calculator.press("7");
-        calculator.press("8");
-        calculator.press("9");
-
+    public void enterDigitsIntoDisplay() {
+        calculator.pressInputKeys("1230.456789");
         calculator.shows("1230.456789");
+    }
+
+    @Test
+    public void basicOperations() {
+        calculator.press("6");
+        calculator.press("*");
+        calculator.shows("6");
+
+        calculator.press("3");
+        calculator.press("/");
+        calculator.shows("18");
+
+        calculator.press("2");
+        calculator.press("-");
+        calculator.shows("9");
+
+        calculator.press("1");
+        calculator.press("+");
+        calculator.shows("8");
+
+        calculator.press("4");
+        calculator.press("=");
+        calculator.shows("12");
+
+        calculator.press("=");
+        calculator.shows("16");
+
+        calculator.press("=");
+        calculator.shows("20");
     }
 }

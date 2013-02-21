@@ -64,4 +64,10 @@ public class CalculatorDriver {
             throw new IllegalStateException(ex);
         }
     }
+
+    public void pressInputKeys(String inputs) {
+        for(char input : inputs.toCharArray()) {
+            press(Character.toString(input));
+        }
+    }
 }
