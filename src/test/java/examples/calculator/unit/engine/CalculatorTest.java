@@ -39,4 +39,13 @@ public class CalculatorTest {
         calculator.setOperation(Calculator.Addition);
         assertThat(calculator.getValue(), equalTo(5));
     }
+
+    @Test
+    public void shouldEvaluateSubtraction() {
+        calculator.setValue(3);
+        calculator.setOperation(Calculator.Subtraction);
+        calculator.setValue(2);
+        calculator.setOperation(Calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(1));
+    }
 }
