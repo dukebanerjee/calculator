@@ -59,4 +59,13 @@ public class CalculatorTest {
         calculator.setOperation(calculator.Equals);
         assertThat(calculator.getValue(), equalTo(new BigDecimal(6)));
     }
+
+    @Test
+    public void shouldEvaluateDivision() {
+        calculator.setValue(new BigDecimal(6));
+        calculator.setOperation(calculator.Divide);
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(3)));
+    }
 }

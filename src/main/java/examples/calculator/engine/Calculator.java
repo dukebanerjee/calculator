@@ -7,6 +7,13 @@ public class Calculator {
     private BigDecimal operand;
     private Operation lastOperation;
 
+    public Operation Equals = new Operation() {
+        @Override
+        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
+            return lastOperation.apply(operand, value);
+        }
+    };
+
     public Operation Addition = new Operation() {
         @Override
         public BigDecimal apply(BigDecimal operand, BigDecimal value) {
@@ -21,16 +28,17 @@ public class Calculator {
         }
     };
 
-    public Operation Equals = new Operation() {
-        @Override
-        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
-            return lastOperation.apply(operand, value);
-        }
-    };
     public Operation Multiplication = new Operation() {
         @Override
         public BigDecimal apply(BigDecimal operand, BigDecimal value) {
             return operand.multiply(value);
+        }
+    };
+
+    public Operation Divide = new Operation() {
+        @Override
+        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
+            return operand.divide(value);
         }
     };
 
