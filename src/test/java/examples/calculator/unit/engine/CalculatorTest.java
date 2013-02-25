@@ -29,7 +29,7 @@ public class CalculatorTest {
         calculator.setValue(new BigDecimal(3));
         calculator.setOperation(calculator.Addition);
         calculator.setValue(new BigDecimal(2));
-        calculator.setOperation(calculator.Equals);
+        calculator.equals();
         assertThat(calculator.getValue(), equalTo(new BigDecimal(5)));
     }
 
@@ -47,7 +47,7 @@ public class CalculatorTest {
         calculator.setValue(new BigDecimal(3));
         calculator.setOperation(calculator.Subtraction);
         calculator.setValue(new BigDecimal(2));
-        calculator.setOperation(calculator.Equals);
+        calculator.equals();
         assertThat(calculator.getValue(), equalTo(new BigDecimal(1)));
     }
 
@@ -56,7 +56,7 @@ public class CalculatorTest {
         calculator.setValue(new BigDecimal(3));
         calculator.setOperation(calculator.Multiplication);
         calculator.setValue(new BigDecimal(2));
-        calculator.setOperation(calculator.Equals);
+        calculator.equals();
         assertThat(calculator.getValue(), equalTo(new BigDecimal(6)));
     }
 
@@ -65,8 +65,21 @@ public class CalculatorTest {
         calculator.setValue(new BigDecimal(6));
         calculator.setOperation(calculator.Divide);
         calculator.setValue(new BigDecimal(2));
-        calculator.setOperation(calculator.Equals);
+        calculator.equals();
         assertThat(calculator.getValue(), equalTo(new BigDecimal(3)));
+    }
+
+    @Test
+    public void shouldApplyLastOperandAndLastOperationToValueForRepeatedEquals() {
+        calculator.setValue(new BigDecimal(6));
+        calculator.setOperation(calculator.Addition);
+        calculator.setValue(new BigDecimal(2));
+        calculator.equals();
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(8)));
+        calculator.equals();
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(10)));
+        calculator.equals();
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(12)));
     }
 
     @Test
@@ -88,7 +101,7 @@ public class CalculatorTest {
         assertThat(calculator.getValue(), equalTo(new BigDecimal(8)));
 
         calculator.setValue(new BigDecimal(4));
-        calculator.setOperation(calculator.Equals);
+        calculator.equals();
         assertThat(calculator.getValue(), equalTo(new BigDecimal(12)));
     }
 }
