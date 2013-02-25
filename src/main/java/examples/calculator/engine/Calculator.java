@@ -22,6 +22,8 @@ public class Calculator {
             if(this.operation == Addition) {
                 this.value = this.operand + this.value;
             }
+        } else if(operation == Addition) {
+            this.value = this.operand + this.value;
         }
         this.operation = operation;
     }

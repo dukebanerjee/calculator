@@ -30,4 +30,13 @@ public class CalculatorTest {
         calculator.setOperation(Calculator.Equals);
         assertThat(calculator.getValue(), equalTo(5));
     }
+
+    @Test
+    public void shouldEvaluateOperationWhenAnotherOperationIsPressed() {
+        calculator.setValue(3);
+        calculator.setOperation(Calculator.Addition);
+        calculator.setValue(2);
+        calculator.setOperation(Calculator.Addition);
+        assertThat(calculator.getValue(), equalTo(5));
+    }
 }
