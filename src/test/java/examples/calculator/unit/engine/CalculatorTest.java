@@ -4,6 +4,8 @@ import examples.calculator.engine.Calculator;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -17,35 +19,35 @@ public class CalculatorTest {
 
     @Test
     public void shouldReturnEnteredValueWhenFirstOperatorIsPressed() {
-        calculator.setValue(3);
-        calculator.setOperation(Calculator.Addition);
-        assertThat(calculator.getValue(), equalTo(3));
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Addition);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(3)));
     }
 
     @Test
     public void shouldEvaluateOperationWhenEqualsIsPressed() {
-        calculator.setValue(3);
-        calculator.setOperation(Calculator.Addition);
-        calculator.setValue(2);
-        calculator.setOperation(Calculator.Equals);
-        assertThat(calculator.getValue(), equalTo(5));
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Addition);
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(5)));
     }
 
     @Test
     public void shouldEvaluateOperationWhenAnotherOperationIsPressed() {
-        calculator.setValue(3);
-        calculator.setOperation(Calculator.Addition);
-        calculator.setValue(2);
-        calculator.setOperation(Calculator.Addition);
-        assertThat(calculator.getValue(), equalTo(5));
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Addition);
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Addition);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(5)));
     }
 
     @Test
     public void shouldEvaluateSubtraction() {
-        calculator.setValue(3);
-        calculator.setOperation(Calculator.Subtraction);
-        calculator.setValue(2);
-        calculator.setOperation(Calculator.Equals);
-        assertThat(calculator.getValue(), equalTo(1));
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Subtraction);
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(1)));
     }
 }

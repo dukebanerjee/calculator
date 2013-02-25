@@ -1,34 +1,46 @@
 package examples.calculator.engine;
 
+import java.math.BigDecimal;
+
 public class Calculator {
-    private int value;
-    private int operand;
-    private Object operation;
+    private BigDecimal value;
+    private BigDecimal operand;
+    private Operation lastOperation;
 
-    public static Object Addition = new Object();
-    public static Object Equals = new Object();
-    public static Object Subtraction = new Object();
+    public Operation Addition = new Operation() {
+        @Override
+        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
+            return operand.add(value);
+        }
+    };
 
-    public void setValue(int value) {
+    public Operation Subtraction = new Operation() {
+        @Override
+        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
+            return operand.subtract(value);
+        }
+    };
+
+    public Operation Equals = new Operation() {
+        @Override
+        public BigDecimal apply(BigDecimal operand, BigDecimal value) {
+            return lastOperation.apply(operand, value);
+        }
+    };
+
+    public void setValue(BigDecimal value) {
         this.operand = this.value;
         this.value = value;
     }
 
-    public int getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setOperation(Object operation) {
-        if(operation == Equals) {
-            if(this.operation == Addition) {
-                this.value = this.operand + this.value;
-            }
-            else if(this.operation == Subtraction) {
-                this.value = this.operand - this.value;
-            }
-        } else if(operation == Addition) {
-            this.value = this.operand + this.value;
+    public void setOperation(Operation currentOperation) {
+        if(currentOperation == Equals || lastOperation != null) {
+            this.value = lastOperation.apply(operand, value);
         }
-        this.operation = operation;
+        this.lastOperation = currentOperation;
     }
 }
