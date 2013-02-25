@@ -68,4 +68,27 @@ public class CalculatorTest {
         calculator.setOperation(calculator.Equals);
         assertThat(calculator.getValue(), equalTo(new BigDecimal(3)));
     }
+
+    @Test
+    public void shouldEvaluateSequenceOfOperations() {
+        calculator.setValue(new BigDecimal(6));
+        calculator.setOperation(calculator.Multiplication);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(6)));
+
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Divide);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(18)));
+
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Subtraction);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(9)));
+
+        calculator.setValue(new BigDecimal(1));
+        calculator.setOperation(calculator.Addition);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(8)));
+
+        calculator.setValue(new BigDecimal(4));
+        calculator.setOperation(calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(12)));
+    }
 }
