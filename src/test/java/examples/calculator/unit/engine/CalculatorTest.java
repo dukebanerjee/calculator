@@ -50,4 +50,13 @@ public class CalculatorTest {
         calculator.setOperation(calculator.Equals);
         assertThat(calculator.getValue(), equalTo(new BigDecimal(1)));
     }
+
+    @Test
+    public void shouldEvaluateMultiplication() {
+        calculator.setValue(new BigDecimal(3));
+        calculator.setOperation(calculator.Multiplication);
+        calculator.setValue(new BigDecimal(2));
+        calculator.setOperation(calculator.Equals);
+        assertThat(calculator.getValue(), equalTo(new BigDecimal(6)));
+    }
 }
